@@ -15,11 +15,11 @@ Running the Examples
 --------------------
 
 The examples are designed to work in both [Node](http://nodejs.org) and 
-in the browser.  Code uses the CommonJS module system.  
-Test suites have "_test" at the end.
-Code that is specific to the browser ends with "_ui".
+in the browser.  Code uses the CommonJS module system.  Test suites 
+have "_test" at the end.  Code that is specific to the browser ends with "_ui".
 
 Modules currently implemented:
+
 + rng
 
 --
