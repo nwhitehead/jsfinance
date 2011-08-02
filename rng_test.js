@@ -1,4 +1,5 @@
-var rng = require('./rng');
+var Finance = {};
+Finance.rng = require('./rng').rng;
 var assert = require('assert');
 
 // Simple tests
@@ -30,7 +31,7 @@ var assert = require('assert');
         var diff = Math.abs(sum - N / 2);
         assert.ok(diff < Math.sqrt(N));
     };
-    var rngs = [ rng.prng(), rng.prng(0), rng.prng(1), rng.prng(1235) ];
+    var rngs = [ Finance.rng.prng(), Finance.rng.prng(0), Finance.rng.prng(1), Finance.rng.prng(1235) ];
     var i;
     for(i = 0; i < rngs.length; i += 1) {
         var r = rngs[i];
@@ -42,7 +43,7 @@ var assert = require('assert');
 
 // Examples for user
 (function () {
-    var r = rng.prng();
+    var r = Finance.rng.prng();
     console.log("Here are some random uniform reals");
     for(i = 0; i < 10; i++) {
         console.log(r.next());
@@ -50,7 +51,7 @@ var assert = require('assert');
 })();
 
 (function () {
-    var r = rng.prng(1234567);
+    var r = Finance.rng.prng(1234567);
     var sum = 0;
     var N = 1000000;
     for(i = 0; i < N; i++) {

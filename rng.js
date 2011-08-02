@@ -1,5 +1,16 @@
+/*
+Generate (pseudo)random samples from uniform distribution from 0 to 1.
+
+Deterministic, always gives the same sequence for the same seed.
+This helps tremendously with debugging.
+*/
+
+/* Namespace */
+var Finance = {} || Finance;
+Finance.rng = {} || Finance.rng;
+
 /* Create RNG object with parameters */
-exports.prng = function (seed) {
+Finance.rng.prng = function (seed) {
     /* Use MRG32k3a algorithm based on description from:
        P.L'Ecuyer, "Good Parameter Sets for Combined Multiple Recursive
        Random Number Generators", Operations Research, vol. 47, no. 1,
@@ -38,6 +49,7 @@ exports.prng = function (seed) {
     var a23n = 1370589.0;
 
     // Initial state, must be nonzero integers less than m1 and m2
+    // FIXME naive seeding
     var s10 = mod(seed, m2);
     var s11 = 2.0;
     var s12 = 3.0;
@@ -69,4 +81,5 @@ exports.prng = function (seed) {
     return gen;
 };
 
-exports.VERSION = "0.1";
+/* Node.js exports */
+exports.rng = Finance.rng;

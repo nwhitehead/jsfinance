@@ -1,5 +1,16 @@
+/*
+Distributions
+
+These functions transform uniform random samples from 0 to 1 into
+samples from various distributions.
+*/
+
+/* Namespace */
+var Finance = {} || Finance;
+Finance.distribution = {} || Finance.distribution;
+
 /* Inverse cumulative normal distribution function, standard normal */
-exports.icndf = function (x) {
+Finance.distribution.icndf = function (x) {
     /* Use Moro's algorithm as explained in Mark Joshi, "Concepts and
        Practice of Mathematical Finance", Cambridge University Press,
        2007, p. 416.
@@ -62,8 +73,19 @@ exports.icndf = function (x) {
     }
 };
 
-exports.normal = function (mean, stddev) {
+/* Uniform continuous distribution from a to b */
+Finance.distribution.uniform = function (a, b) {
     return function (x) {
-        return exports.icndf(x) * stddev + mean;
+        return a * (1 - x) + b * x;
     };
 };
+
+/* Normal distribution with given mean and stddev */
+Finance.distribution.normal = function (mean, stddev) {
+    return function (x) {
+        return Finance.distribution.icndf(x) * stddev + mean;
+    };
+};
+
+/* Node.js exports */
+exports.distribution = Finance.distribution;
